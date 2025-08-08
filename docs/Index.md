@@ -88,7 +88,7 @@ curl http://localhost:9090/metrics
 
 ## 📝 License
 
-Jantar is released under the GNU General Public License v3.0. See [LICENSE](../LICENSE.md) for details.
+Jantar is released under the Jantar License. See [LICENSE](../LICENSE.md) for details.
 
 ## 🤝 Contributing
 
