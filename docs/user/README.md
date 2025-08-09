@@ -9,7 +9,8 @@ This guide is for end users who want to use Jantar for peer-to-peer communicatio
 3. [Commands Reference](commands.md) - All available commands
 4. [Configuration](configuration.md) - Customizing your setup
 5. [Features](features.md) - Complete feature overview
-6. [Troubleshooting](troubleshooting.md) - Solving common issues
+6. [Prometheus Metrics](prometheus-metrics.md) - Monitoring with Prometheus
+7. [Troubleshooting](troubleshooting.md) - Solving common issues
 
 ## 🎯 What is Jantar?
 

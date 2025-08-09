@@ -197,6 +197,22 @@ log_level: "debug"
 auto_update: false
 ```
 
+### GPU-Accelerated Node
+```yaml
+name: "GPUNode"
+gpu:
+  enabled: true              # Enable GPU acceleration
+  backend: "auto"            # auto|opencl|cpu_only
+  device_index: 0            # Which GPU to use (0 = first)
+  max_memory_mb: 1024        # Max GPU memory to use (MB)
+  batch_size: 1000           # Operations per batch
+  fallback_on_error: true    # Fall back to CPU on errors
+  operations:
+    hashing: true            # GPU for hashing
+    address_generation: true # GPU for address generation
+    signature_verification: true # GPU for signatures
+```
+
 ### Production Node
 ```yaml
 name: "ProductionNode"

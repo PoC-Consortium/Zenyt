@@ -220,17 +220,19 @@ db-init /opt/zenyt.db
 ### Check Balances
 ```bash
 # Check address balance
-balance ZENYT-GENES-IS111-11111-11111-111111
+db balance ZENYT-GENES-IS111-11111-11111-111111
 
-# Show rich list
-richlist
-richlist ZENYT 50
+# Show top addresses (richlist)
+db top
+db top balance 50
+db top age-in 20        # Addresses inactive longest
+db top age-out 10 ZENYT # Recently active ZENYT senders
 ```
 
 ### Transfer Funds
 ```bash
 # Transfer between addresses
-transfer ZENYT-FROM1 ZENYT-TO222 1000000
+db transfer ZENYT-FROM1 ZENYT-TO222 1000000
 ```
 
 ## ⌨️ Keyboard Shortcuts

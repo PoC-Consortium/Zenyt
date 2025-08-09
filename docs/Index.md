@@ -70,6 +70,7 @@ curl http://localhost:9090/metrics
 - **Self-Update System** - Automatic updates through P2P network
 - **TURN Relay Support** - Connect through CGNAT/symmetric NAT (v0.1.11+)
 - **Prometheus Metrics** - Complete observability (v0.1.11+)
+- **GPU Acceleration** - OpenCL-based crypto operations with CPU fallback (v0.1.11+)
 - **Multi-Cryptocurrency Support** - Generate and validate addresses for ZENYT, BTC, ETH, and more
 
 ## 📖 Documentation Overview
@@ -82,13 +83,13 @@ curl http://localhost:9090/metrics
 
 ## 🔄 Version Information
 
-- **Current Version**: 0.1.11
+- **Current Version**: 0.1.12
 - **Protocol Version**: libp2p + iroh-blobs 0.35.0
 - **Minimum Rust Version**: 1.70.0
 
 ## 📝 License
 
-Jantar is released under the Jantar License. See [LICENSE](../LICENSE.md) for details.
+Jantar is released under a proprietary license by PoC Consortium. The license restricts usage to the ZENYT blockchain network only. See [LICENSE](../LICENSE.md) for details.
 
 ## 🤝 Contributing
 

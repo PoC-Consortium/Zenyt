@@ -7,10 +7,13 @@ This guide is for system administrators, network operators, and those running Ja
 1. [Bootstrap Nodes](bootstrap-nodes.md) - Setting up network entry points
 2. [Deployment](deployment.md) - Large-scale network deployment
 3. [System Services](systemd.md) - Running as a system service
-4. [Monitoring](monitoring.md) - Metrics, logs, and observability
-5. [Security](security.md) - Hardening and best practices
-6. [TURN Relay](turn-relay.md) - Setting up TURN for NAT traversal
-7. [Master Nodes](master-nodes.md) - Operating update distribution nodes
+4. [RPC Interface](rpc-interface.md) - Remote control for daemons
+5. [Monitoring](monitoring.md) - Metrics, logs, and observability
+6. [Security](security.md) - Hardening and best practices
+7. [TURN Relay Setup](turn-relay.md) - Setting up TURN for NAT traversal
+8. [TURN Security](turn-security.md) - Critical security warnings for TURN
+9. [TURN Double Standard](turn-relay-hypocrisy.md) - The ISP hypocrisy explained
+10. [Master Nodes](master-nodes.md) - Operating update distribution nodes
 
 ## 🎯 Administration Overview
 
