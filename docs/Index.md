@@ -87,8 +87,9 @@ curl http://localhost:9090/metrics
 
 ### ZENYT Transaction System (v0.2.0+)
 - **Revolutionary Transaction Types** - 8 sophisticated transaction types supporting complex operations
-- **M:N Atomic Transfers** - Many-to-many transactions with up to 256 participants
+- **M:N Atomic Transfers** - Many-to-many transactions with up to 512 participants (256 senders + 256 recipients)
 - **Genesis-Based Architecture** - All rewards distributed from 11 billion ZENYT genesis pool
+- **Massive Genesis Distributions** - Up to 65,536 participants in genesis transactions (protocol-level operations)
 - **Native Colored Coins** - 16 asset types with 4-bit color IDs packed efficiently
 - **Same-Amount Distributions** - Space-efficient uniform payment patterns
 - **Dust Rescue Operations** - Drain-smallest-first strategy preserves value

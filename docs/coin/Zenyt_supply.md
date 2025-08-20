@@ -10,11 +10,7 @@ used for having up to 16 "colored coins".
 
 ## Implementation Status (v0.2.0)
 
-The complete ZENYT transaction system is now implemented:
-- **src/coin/amount.rs** - Amount and colored coin data structures
-- **src/coin/tx.rs** - Full transaction system with 8 transaction types
-
-This implementation provides:
+The complete ZENYT transaction system is now implemented in Jantar v0.2.0, providing:
 
 Key Features:
 
@@ -51,7 +47,7 @@ let after_decay = amount.apply_demurrage(1.0)?; // 1% reduction
 
 ## Revolutionary Transaction System
 
-The transaction system (src/coin/tx.rs) implements 8 sophisticated transaction types:
+The ZENYT transaction system implements 8 sophisticated transaction types:
 
 ### Transaction Types Overview
 
@@ -61,22 +57,25 @@ The transaction system (src/coin/tx.rs) implements 8 sophisticated transaction t
    - Optimized for wallet-to-wallet transfers
 
 2. **Type 0x01: M:N Transfer** 
-   - Many-to-many atomic transactions
-   - Up to 256 senders and 256 recipients
-   - Supports exchange settlements and complex group payments
-   - Includes "same-amount" flag for uniform distributions
+   - Many-to-many atomic transactions supporting up to 512 participants
+   - Transaction level: True M:N (256 senders + 256 recipients)
+   - User level: Typically 1:N (single user controlling multiple addresses)
+   - Supports exchange settlements, pool distributions, and multi-address consolidation
+   - Includes "same-amount" flag for uniform distributions with drain-smallest-first
 
 3. **Type 0x02: Genesis-to-Many (0:X)**
-   - Protocol-driven distribution from genesis address
-   - Mining rewards and demurrage redistribution
+   - Protocol-driven distribution supporting up to 65,536 participants  
+   - Genesis not counted (protocol action, not participant)
+   - Designed for massive global distributions (carry-over to millions)
+   - u16 counters enable protocol-scale operations vs u8 for user transactions
    - No transaction fees (protocol authority)
-   - Genesis private key is public knowledge
 
 4. **Type 0x03: Many-to-Genesis (X:0)**
-   - Collection to genesis address
-   - Voluntary proof-of-burn and "pay to all" transactions
-   - Protocol-driven demurrage collection
-   - Dust rescue operations
+   - Collection supporting up to 65,536 participants
+   - Genesis not counted (protocol destination, not participant)  
+   - Enables mass demurrage collection and dust cleanup
+   - u16 counters for large-scale protocol operations
+   - Dual authority: user-initiated (with fees) or protocol-driven (consensus)
 
 5. **Type 0x04: Message/Data Storage**
    - Store arbitrary data on the ledger

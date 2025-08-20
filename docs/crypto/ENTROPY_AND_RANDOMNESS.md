@@ -9,7 +9,6 @@ Jantar's cryptographic address generation relies on **`rand::rngs::OsRng`** for 
 ## Entropy Sources by Cryptocurrency Family
 
 ### 1. ZENYT (Native)
-**File:** `src/crypto/families/zenyt.rs`
 ```rust
 use rand::rngs::OsRng;
 
@@ -26,7 +25,6 @@ fn generate_keypair(&self) -> Result<KeyPair> {
 - **Method:** `SigningKey::generate()` internally uses the provided CSPRNG
 
 ### 2. Bitcoin Family (BTC, LTC, DOGE)
-**File:** `src/crypto/families/bitcoin.rs`
 ```rust
 use rand::rngs::OsRng;
 
@@ -42,7 +40,6 @@ fn generate_keypair(&self) -> Result<KeyPair> {
 - **Method:** `secp256k1` library's `generate_keypair()` uses the provided RNG
 
 ### 3. Ethereum Family
-**File:** `src/crypto/families/ethereum.rs`
 ```rust
 use rand::rngs::OsRng;
 
@@ -59,7 +56,6 @@ fn generate_keypair(&self) -> Result<KeyPair> {
 - **Method:** `SecretKey::new()` generates random bytes using OsRng
 
 ### 4. NXT Family (BURST, NXT, ARDOR)
-**File:** `src/crypto/families/nxt.rs`
 ```rust
 fn generate_keypair(&self) -> Result<KeyPair> {
     let mut rng = rand::thread_rng();  // ← Thread-local RNG (seeded from OS)

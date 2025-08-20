@@ -46,15 +46,20 @@ Transaction {
 
 **Data Structure**:
 - Sender count (8 bits) - up to 256 senders
-- Recipient count (8 bits) - up to 256 recipients
+- Recipient count (8 bits) - up to 256 recipients  
 - Senders array: Vec<(Address, Amount)>
 - Recipients array: Vec<(Address, Amount)>
 
+**Participant Limits**:
+- **Maximum participants**: 512 (256 senders + 256 recipients)
+- **Transaction level**: True M:N atomic operation
+- **User level**: Typically 1:N (single user controlling multiple sender addresses)
+
 **Use Cases**:
-- Exchange settlements
-- Complex group transactions
-- Multi-party contract settlements
-- Pool reward distributions
+- **Exchange settlements**: Exchange hot wallets (M addresses) → user withdrawals (N addresses)
+- **Pool distributions**: Mining pool reward addresses (M) → miners (N recipients)  
+- **Multi-address consolidation**: User's scattered funds (M addresses) → recipients (N)
+- **Complex group transactions**: Multi-party atomic settlements
 
 **Bit 7 Variations**:
 - **Bit 7 = 0**: Individual amounts for each participant
@@ -91,6 +96,12 @@ TransactionData::ManyToManySame {
 - Recipient count as u16 (2 bytes, 0=1 recipient, max 65,536)
 - Recipients array: Vec<(Address, Amount)>
 
+**Participant Limits**:
+- **Maximum participants**: 65,536 recipients
+- **Genesis not counted**: Protocol action, not a participant
+- **Rationale**: Designed for massive global distributions (carry-over to millions)
+- **u16 vs u8**: 16-bit counters enable protocol-scale operations vs 8-bit for user transactions
+
 **Special Properties**:
 - No transaction fee (protocol authority)
 - No signature verification required
@@ -98,10 +109,10 @@ TransactionData::ManyToManySame {
 - Validity determined by protocol consensus rules
 
 **Use Cases**:
-- Mining rewards distribution
-- Demurrage redistribution
-- Carry-over distributions
-- Protocol-driven rewards
+- **Carry-over distributions**: Global distribution to existing crypto holders
+- **Mining rewards distribution**: Protocol rewards to miners
+- **Demurrage redistribution**: Collected fees back to active addresses
+- **Protocol-driven rewards**: System-level incentive distributions
 
 **Example**:
 ```rust
@@ -124,15 +135,21 @@ Transaction::genesis_to_many(
 - Sender count as u16 (2 bytes, 0=1 sender, max 65,536)
 - Senders array: Vec<(Address, Amount)>
 
+**Participant Limits**:
+- **Maximum participants**: 65,536 senders
+- **Genesis not counted**: Protocol destination, not a participant
+- **Rationale**: Protocol needs to collect from many addresses simultaneously
+- **u16 counters**: Enable mass collection operations (demurrage, dust cleanup)
+
 **Authority Models**:
 - **User-initiated**: Voluntary proof-of-burn, "pay to all" (requires signatures + fees)
 - **Protocol-driven**: Demurrage collection (no fees, consensus-validated)
 
 **Use Cases**:
-- Voluntary proof-of-burn transactions
-- "Pay to all" community contributions
-- Automated demurrage collection
-- Dust address cleanup
+- **Mass demurrage collection**: Automated collection from inactive addresses
+- **Voluntary proof-of-burn**: Users burning funds for community benefit
+- **"Pay to all" contributions**: Community donations via genesis
+- **Dust address cleanup**: Protocol collection of negligible balances
 
 **Example (User-Initiated)**:
 ```rust
@@ -232,6 +249,21 @@ TransactionData::TetheredAsset {
 - Backward compatibility maintenance
 - Emergency protocol adjustments
 
+## Participant Limits Summary
+
+Understanding participant limits across transaction types:
+
+| Transaction Type | Max Participants | Counter Type | Rationale |
+|------------------|------------------|--------------|-----------|
+| **Type 0x01: M:N** | 512 (256+256) | u8 + u8 | User transactions, practical limits |
+| **Type 0x02: Genesis→Many** | 65,536 | u16 | Protocol-scale distributions |
+| **Type 0x03: Many→Genesis** | 65,536 | u16 | Mass collection operations |
+
+**Key Insights**:
+- **Genesis is not a participant**: Protocol action, not counted in limits
+- **M:N dual perspective**: Transaction-level (true M:N) vs user-level (1:N pattern)
+- **Counter sizing rationale**: u8 for users (practical), u16 for protocol (massive scale)
+
 ## Same-Amount Distribution Logic (Bit 7 = 1)
 
 For transaction types 0x01, 0x02, and 0x03, the "same amount" flag provides significant advantages:
@@ -247,6 +279,7 @@ For transaction types 0x01, 0x02, and 0x03, the "same amount" flag provides sign
   1. Start with lowest balance senders
   2. Empty them completely before moving to larger senders
   3. Preserves maximum value during dust rescue operations
+- **User control**: Single user typically controls M sender addresses
 
 ### Dust Rescue Operations
 
@@ -279,10 +312,8 @@ All transaction types must satisfy comprehensive validation:
 
 ## Implementation Notes
 
-### Source Code Location
-- **Primary implementation**: `src/coin/tx.rs`
-- **Amount handling**: `src/coin/amount.rs`
-- **Module exports**: `src/coin/mod.rs`
+### Implementation
+The complete transaction system is implemented in Jantar v0.2.0 with full support for all 8 transaction types, comprehensive validation, and extensive test coverage.
 
 ### Key Data Structures
 ```rust

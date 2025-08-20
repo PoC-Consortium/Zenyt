@@ -15,8 +15,6 @@ Entropy → Ed25519 Private Key → Ed25519 Public Key → Blake2b-160 → Reed-
 
 ### Implementation Details
 
-**File:** `src/crypto/families/zenyt.rs`
-
 1. **Key Generation**
    ```rust
    let mut csprng = OsRng;
@@ -68,8 +66,6 @@ Entropy → secp256k1 Private Key → secp256k1 Public Key → SHA256 → RIPEMD
 ```
 
 ### Implementation Details
-
-**File:** `src/crypto/families/bitcoin.rs`
 
 1. **Key Generation**
    ```rust
@@ -134,8 +130,6 @@ Entropy → secp256k1 Private Key → Uncompressed Public Key → Keccak256 → 
 
 ### Implementation Details
 
-**File:** `src/crypto/families/ethereum.rs`
-
 1. **Key Generation**
    ```rust
    let mut rng = OsRng;
@@ -188,8 +182,6 @@ Passphrase → SHA256 → Curve25519 Private Key → X25519 Public Key → SHA25
 ```
 
 ### Implementation Details
-
-**File:** `src/crypto/families/nxt.rs`
 
 1. **Passphrase-Based Generation**
    ```rust

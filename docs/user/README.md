@@ -37,8 +37,9 @@ Jantar is a decentralized peer-to-peer application that allows you to:
 
 ### ZENYT Transaction System (v0.2.0+)
 - **Revolutionary Transaction Types** - 8 sophisticated transaction types (0x00-0xFF)
-- **M:N Transfers** - Atomic many-to-many transactions for complex operations
+- **M:N Transfers** - Atomic many-to-many transactions with up to 512 participants (256 senders + 256 recipients)
 - **Genesis-Based Architecture** - All rewards distributed from genesis address
+- **Massive Genesis Operations** - Protocol-level transactions supporting up to 65,536 participants
 - **Colored Coins** - Native support for 16 different asset types
 - **Same-Amount Distributions** - Efficient uniform payment patterns
 - **Dust Rescue Operations** - Drain-smallest-first strategy preserves value

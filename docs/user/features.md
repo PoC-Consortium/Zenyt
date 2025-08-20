@@ -50,8 +50,15 @@
 ### ZENYT Transaction System (v0.2.0+)
 - **Revolutionary Transaction Architecture** - 8 sophisticated transaction types (0x00-0xFF)
 - **Standard 1:1 Transfers** - Most efficient encoding for common payments
-- **M:N Atomic Transactions** - Many-to-many transfers up to 256 senders/recipients
+- **M:N Atomic Transactions** - Many-to-many transfers supporting up to 512 participants
+  - **Transaction level**: True M:N (256 senders + 256 recipients = 512 participants)  
+  - **User level**: Typically 1:N (1 user with M addresses sending to N recipients)
+  - **Use cases**: Exchange settlements, pool distributions, multi-address consolidation
 - **Genesis-Based Rewards** - All mining rewards and demurrage redistribution from genesis address
+- **Massive Genesis Operations** - Protocol-level transactions supporting up to 65,536 participants
+  - **Genesis not counted**: Protocol action, not a participant
+  - **Scale for global distributions**: Carry-over to millions of crypto holders
+  - **u16 counters**: Enable large-scale protocol operations vs u8 for user transactions
 - **Colored Coin System** - Native support for 16 asset types with 4-bit color IDs
 - **Same-Amount Distributions** - Space-efficient uniform payment patterns
 - **Dust Rescue Operations** - Drain-smallest-first strategy preserves value from dust collection
