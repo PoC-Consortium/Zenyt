@@ -1,3 +1,4 @@
+
 Envisioned for Zenyt is a total capped supply of 11 bn, where the
 divisibility is same as with BTC (100 mio); The smallest unit is
 called Planck (like Satoshi is for BTC). THis means Zenyt total supply
@@ -7,7 +8,11 @@ remaining 4 bit (most significant should be used for this - I think -
 but maybe it does not matter with the right data structure) could be
 used for having up to 16 "colored coins".
 
-An initial implementation is at src/coin/amount.rs
+## Implementation Status (v0.2.0)
+
+The complete ZENYT transaction system is now implemented:
+- **src/coin/amount.rs** - Amount and colored coin data structures
+- **src/coin/tx.rs** - Full transaction system with 8 transaction types
 
 This implementation provides:
 
@@ -43,3 +48,78 @@ let sum = (zenyt + planck)?;
 
 // Demurrage
 let after_decay = amount.apply_demurrage(1.0)?; // 1% reduction
+
+## Revolutionary Transaction System
+
+The transaction system (src/coin/tx.rs) implements 8 sophisticated transaction types:
+
+### Transaction Types Overview
+
+1. **Type 0x00: Standard 1:1 Transfer**
+   - Most efficient encoding for common payments
+   - Single sender to single recipient
+   - Optimized for wallet-to-wallet transfers
+
+2. **Type 0x01: M:N Transfer** 
+   - Many-to-many atomic transactions
+   - Up to 256 senders and 256 recipients
+   - Supports exchange settlements and complex group payments
+   - Includes "same-amount" flag for uniform distributions
+
+3. **Type 0x02: Genesis-to-Many (0:X)**
+   - Protocol-driven distribution from genesis address
+   - Mining rewards and demurrage redistribution
+   - No transaction fees (protocol authority)
+   - Genesis private key is public knowledge
+
+4. **Type 0x03: Many-to-Genesis (X:0)**
+   - Collection to genesis address
+   - Voluntary proof-of-burn and "pay to all" transactions
+   - Protocol-driven demurrage collection
+   - Dust rescue operations
+
+5. **Type 0x04: Message/Data Storage**
+   - Store arbitrary data on the ledger
+   - Timestamping and announcements
+   - Small data archival capabilities
+
+6. **Type 0x05: Smart Contract Operation**
+   - Contract deployment and execution
+   - Automated transactions with complex business logic
+
+7. **Type 0x06: Tethered Asset Operation**
+   - Real-world asset linkage and metadata management
+   - Property deeds, certificates, legal documents
+   - Up to 64KB metadata per transaction
+
+8. **Type 0xFF: Protocol Extensions**
+   - Reserved for future protocol upgrades
+   - Ensures forward compatibility
+
+### Genesis-Based Architecture
+
+Unlike traditional cryptocurrencies where rewards appear "out of thin air", ZENYT creates the entire 11 billion supply at genesis and stores it in a special genesis address:
+
+- All mining rewards are transactions from genesis to miners
+- Demurrage collection flows back to genesis
+- "Payment to all" transactions supported via genesis
+- System invariant: Genesis + Ledger = Total Supply
+- No mining endpoint - demurrage continuously replenishes reward pool
+
+### Same-Amount Distribution Patterns
+
+The "same amount" flag (bit 7) provides space-efficient encoding for uniform distributions:
+
+- **Drain-smallest-first strategy**: For dust rescue operations
+- **Space savings**: Single amount value instead of per-participant amounts
+- **Value preservation**: Rescues dust addresses from dust collector
+
+### Validation Framework
+
+All transactions must satisfy:
+- Balance conservation (inputs = outputs + fees)
+- Color consistency (cannot mix colors within single amount field)
+- Demurrage application (time-based balance adjustments)
+- Signature verification (for user transactions)
+- Address format validation (Reed-Solomon)
+- Type-specific limits (participant counts, metadata sizes)

@@ -1,6 +1,6 @@
 # Address Generation Implementation Details
 
-*Last updated: 2025-01-08*
+*Last updated: 2025-08-20*
 
 ## Overview
 

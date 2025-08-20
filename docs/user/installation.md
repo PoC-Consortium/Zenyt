@@ -7,32 +7,32 @@ Jantar is distributed as a standalone binary that doesn't require installation. 
 ### Linux (x86_64)
 ```bash
 # Download the AppImage
-wget https://github.com/yourrepo/releases/jantar-0.1.11-x86_64.AppImage
+wget https://github.com/yourrepo/releases/jantar-0.2.0-x86_64.AppImage
 
 # Make it executable
-chmod +x jantar-0.1.11-x86_64.AppImage
+chmod +x jantar-0.2.0-x86_64.AppImage
 
 # Run it
-./jantar-0.1.11-x86_64.AppImage
+./jantar-0.2.0-x86_64.AppImage
 ```
 
 ### Linux ARM64 (Raspberry Pi)
 ```bash
 # Download the ARM64 AppImage
-wget https://github.com/yourrepo/releases/jantar-0.1.11-aarch64.AppImage
+wget https://github.com/yourrepo/releases/jantar-0.2.0-aarch64.AppImage
 
 # Make it executable
-chmod +x jantar-0.1.11-aarch64.AppImage
+chmod +x jantar-0.2.0-aarch64.AppImage
 
 # Run it
-./jantar-0.1.11-aarch64.AppImage
+./jantar-0.2.0-aarch64.AppImage
 ```
 
 ### Windows
 ```powershell
-# Download jantar-0.1.11-x86_64.exe
+# Download jantar-0.2.0-x86_64.exe
 # Run from Command Prompt or PowerShell
-jantar-0.1.11-x86_64.exe
+jantar-0.2.0-x86_64.exe
 ```
 
 ### macOS
@@ -94,9 +94,9 @@ Jantar creates these directories on first run:
 FROM ubuntu:22.04
 RUN apt-get update && apt-get install -y wget
 WORKDIR /app
-RUN wget https://github.com/yourrepo/releases/jantar-0.1.11-x86_64.AppImage
-RUN chmod +x jantar-0.1.11-x86_64.AppImage
-CMD ["./jantar-0.1.11-x86_64.AppImage"]
+RUN wget https://github.com/yourrepo/releases/jantar-0.2.0-x86_64.AppImage
+RUN chmod +x jantar-0.2.0-x86_64.AppImage
+CMD ["./jantar-0.2.0-x86_64.AppImage"]
 ```
 
 ## ⚡ Quick Start
@@ -115,7 +115,7 @@ Jantar can update itself through the P2P network:
 [Alice]> update
 
 # Update to specific version
-[Alice]> update 0.1.10
+[Alice]> sys update 0.1.13
 ```
 
 ## 🛠️ Building from Source

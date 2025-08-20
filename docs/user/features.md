@@ -47,12 +47,26 @@
   - Litecoin, Dogecoin
   - BURST, NXT, ARDOR (Curve25519)
 
-### Database Integration (v0.1.9+, Experimental)
-- **ZENYT Blockchain** - Local blockchain database
-- **Balance Tracking** - Check account balances
-- **Transaction System** - Transfer between addresses
-- **Colored Coins** - 16 different coin types
-- **Rich List** - Top addresses by balance
+### ZENYT Transaction System (v0.2.0+)
+- **Revolutionary Transaction Architecture** - 8 sophisticated transaction types (0x00-0xFF)
+- **Standard 1:1 Transfers** - Most efficient encoding for common payments
+- **M:N Atomic Transactions** - Many-to-many transfers up to 256 senders/recipients
+- **Genesis-Based Rewards** - All mining rewards and demurrage redistribution from genesis address
+- **Colored Coin System** - Native support for 16 asset types with 4-bit color IDs
+- **Same-Amount Distributions** - Space-efficient uniform payment patterns
+- **Dust Rescue Operations** - Drain-smallest-first strategy preserves value from dust collection
+- **Message Storage** - Arbitrary data storage on the ledger with timestamping
+- **Smart Contract Operations** - Contract deployment and execution framework
+- **Tethered Asset Management** - Real-world asset linkage with metadata (up to 64KB)
+- **Protocol Extensions** - Future-compatible extension mechanism (Type 0xFF)
+- **Comprehensive Validation** - Balance conservation, color consistency, demurrage application
+
+### Database Integration (v0.1.9+, Enhanced v0.2.0+)
+- **ZENYT Blockchain** - Local blockchain database with full transaction support
+- **Balance Tracking** - Check account balances across all 16 colored coin types
+- **Advanced Transaction Processing** - Support for all 8 transaction types
+- **Genesis Architecture** - Special genesis address handling for protocol operations
+- **Rich List** - Top addresses by balance with multi-color support
 
 ### Network Analysis (v0.1.10+)
 - **Network Crawler** - Map network topology (master nodes only)
@@ -97,7 +111,17 @@
 
 ## 🔄 Version History
 
-### v0.1.11 (Current)
+### v0.2.0 (Current)
+- Revolutionary ZENYT transaction system with 8 transaction types
+- M:N atomic transfers supporting up to 256 participants
+- Genesis-based reward distribution architecture
+- Native colored coin support for 16 asset types
+- Same-amount distribution patterns for efficiency
+- Dust rescue operations with drain-smallest-first strategy
+- Comprehensive transaction validation and balance conservation
+- Enhanced database integration with full transaction support
+
+### v0.1.11
 - TURN relay server integration
 - Prometheus metrics
 - Rate limiting

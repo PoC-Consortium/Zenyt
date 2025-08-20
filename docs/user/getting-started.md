@@ -17,7 +17,7 @@ Welcome to Jantar! This guide will help you get up and running quickly.
 ### 2. Check Your Connections
 
 ```bash
-[Alice]> peers
+[Alice]> net peers
 
 Connected:
   ✅ 12D3KooWCUsopTQM7Bu9apwTWgyR6Ftkmh7vxe1mgHUB4Wg3uWku
@@ -27,13 +27,13 @@ Connected:
 ### 3. Send Your First Message
 
 ```bash
-[Alice]> msg 12D3KooW... Hello from Alice!
+[Alice]> net msg 12D3KooW... Hello from Alice!
 ```
 
 ### 4. List Available Files
 
 ```bash
-[Alice]> list
+[Alice]> fs ls
 
 📢 Announced files:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -168,7 +168,7 @@ send 12D3KooW... "~/My Documents/important file.pdf"
 ```bash
 [Alice]> update
 🔍 Checking for updates...
-🎉 Update available: 0.1.10 -> 0.1.11
+🎉 Update available: 0.1.13 -> 0.2.0
 💡 Run 'update' again to download and install
 ```
 
@@ -311,7 +311,7 @@ list
 ### Check Version and Platform
 ```bash
 [Alice]> version
-📌 Jantar version 0.1.11 (linux-x86_64)
+📌 Jantar version 0.2.0 (linux-x86_64)
    Built: 2025-08-08
 ```
 

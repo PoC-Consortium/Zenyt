@@ -35,6 +35,14 @@ Jantar is a decentralized peer-to-peer application that allows you to:
 - **Rate Limiting** - Protection against flooding
 - **Multi-Crypto Support** - Generate addresses for various cryptocurrencies
 
+### ZENYT Transaction System (v0.2.0+)
+- **Revolutionary Transaction Types** - 8 sophisticated transaction types (0x00-0xFF)
+- **M:N Transfers** - Atomic many-to-many transactions for complex operations
+- **Genesis-Based Architecture** - All rewards distributed from genesis address
+- **Colored Coins** - Native support for 16 different asset types
+- **Same-Amount Distributions** - Efficient uniform payment patterns
+- **Dust Rescue Operations** - Drain-smallest-first strategy preserves value
+
 ## 🚀 Quick Start
 
 1. **Download Jantar** for your platform

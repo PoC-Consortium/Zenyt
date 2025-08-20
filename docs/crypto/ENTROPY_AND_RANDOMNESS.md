@@ -1,6 +1,6 @@
 # Entropy and Randomness in Jantar Address Generation
 
-*Last updated: 2025-01-08*
+*Last updated: 2025-08-20*
 
 ## Executive Summary
 

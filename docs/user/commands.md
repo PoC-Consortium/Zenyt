@@ -27,7 +27,7 @@ prefix ambiguous thus non-working.
 - `fs` - File system operations
 - `net` - Network operations
 - `crypto` - Cryptocurrency operations
-- `db` - Database operations
+- `db` - Database and transaction operations
 - `cfg` - Configuration management
 - `sys` - System operations
 
@@ -205,14 +205,63 @@ db balance ZENYT-GENES-IS111-11111-11111-111111
 ```
 
 ### db transfer
-Transfer ZENYT between addresses
+Transfer ZENYT between addresses (Standard 1:1 Transfer - Type 0x00)
 ```
-db transfer <from> <to> <amount>
+db transfer <from> <to> <amount> [color]
 
-# Example:
-db transfer ZENYT-ADDR1... ZENYT-ADDR2... 1000000
+# Examples:
+db transfer ZENYT-ADDR1... ZENYT-ADDR2... 1000000        # Standard ZENYT transfer
+db transfer ZENYT-ADDR1... ZENYT-ADDR2... 500000 1       # Colored coin transfer (Color 1)
 ```
 Amount is in Planck (1 ZENYT = 100,000,000 Planck)
+
+### db transfer-mn
+Execute M:N atomic transfer (Type 0x01)
+```
+db transfer-mn <senders> <recipients> <amounts> [same-amount]
+
+# Examples:
+db transfer-mn "ADDR1,ADDR2" "ADDR3,ADDR4" "1000,2000,1500,500"     # Individual amounts
+db transfer-mn "ADDR1,ADDR2" "ADDR3,ADDR4" "1000" --same-amount      # Same amount to all
+```
+
+### db genesis-distribute
+Execute genesis-to-many distribution (Type 0x02, protocol operation)
+```
+db genesis-distribute <recipients> <amounts> [same-amount]
+
+# Examples:
+db genesis-distribute "ADDR1,ADDR2,ADDR3" "1000000,2000000,500000"   # Mining rewards
+db genesis-distribute "ADDR1,ADDR2,ADDR3" "1000000" --same-amount     # Uniform distribution
+```
+
+### db collect-to-genesis
+Execute many-to-genesis collection (Type 0x03)
+```
+db collect-to-genesis <senders> <amounts> [same-amount]
+
+# Examples:
+db collect-to-genesis "ADDR1,ADDR2" "100,200"                        # Voluntary burn
+db collect-to-genesis "ADDR1,ADDR2" "100" --same-amount              # Dust collection
+```
+
+### db store-message
+Store message/data on ledger (Type 0x04)
+```
+db store-message <from> <message> <fee>
+
+# Example:
+db store-message ZENYT-ADDR1... "Important timestamp data" 1000
+```
+
+### db tether-asset
+Manage tethered assets (Type 0x06)
+```
+db tether-asset <from> <asset_hash> <operation> <metadata_file>
+
+# Example:
+db tether-asset ZENYT-ADDR1... abc123... create property_deed.json
+```
 
 ### db top
 Query top addresses by various criteria
