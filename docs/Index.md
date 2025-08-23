@@ -42,26 +42,16 @@ For developers contributing to or building on Jantar.
 ## 🚀 Quick Start
 
 ### For Users
-1. Download the latest [AppImage (Linux)](https://github.com/yourrepo/releases) or [Windows executable](https://github.com/yourrepo/releases)
+1. Download the latest AppImage (Linux) or Windows executable from the official releases page
 2. Make it executable: `chmod +x jantar-*.AppImage`
 3. Run: `./jantar-*.AppImage`
 4. Type `help` to see available commands
 
 ### For Developers
-```bash
-# Clone the repository
-git clone https://github.com/yourrepo/jantar.git
-cd jantar
-
-# Build
-cargo build --release
-
-# Run tests
-cargo test
-
-# Run
-./target/release/jantar
-```
+Jantar is developed as a proprietary reference implementation. Developer access is limited to:
+- Protocol specifications and documentation
+- Community discussion and feedback
+- Feature requests through established channels
 
 ### For Administrators
 ```bash
@@ -106,7 +96,7 @@ curl http://localhost:9090/metrics
 
 ## 🔄 Version Information
 
-- **Current Version**: 0.2.0
+- **Current Version**: 0.2.1
 - **Protocol Version**: libp2p + iroh-blobs 0.35.0
 - **Transaction System**: Full ZENYT implementation with 8 transaction types
 - **Minimum Rust Version**: 1.88.0
@@ -117,12 +107,16 @@ Jantar is released under a proprietary license by PoC Consortium. The license re
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](development/contributing.md) for details.
+Jantar is developed as a proprietary reference implementation. Community contributions are welcome through:
+- Feature requests and feedback
+- Bug reports and issue reporting  
+- Protocol improvement proposals (CIPs)
+- Documentation improvements
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourrepo/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourrepo/discussions)
+- **Issues**: Report through community channels
+- **Discord**: https://discord.gg/Mvqaa5k
 - **Documentation**: You're reading it!
 
 ## 🗺️ Documentation Map

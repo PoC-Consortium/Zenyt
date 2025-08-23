@@ -182,8 +182,8 @@ See [Development Roadmap](../development/TODO.md) for planned features.
 
 Have an idea for a new feature? Please:
 1. Check the [TODO list](../development/TODO.md) first
-2. Search [existing issues](https://github.com/yourrepo/issues)
-3. Open a [feature request](https://github.com/yourrepo/issues/new)
+2. Search [existing issues](https://github.com/PoC-Consortium/Zenyt/issues)
+3. Open a [feature request](https://github.com/PoC-Consortium/Zenyt/issues/new)
 
 ---
 [← Back to User Guide](README.md) | [← Back to Index](../Index.md)

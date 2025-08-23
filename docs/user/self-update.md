@@ -24,20 +24,13 @@ The Jantar P2P application now includes a self-update mechanism with ed25519 sig
 - `version` - Show current version
 - `update` - Check for and install updates from peers
 
-## Development: Signing Updates
+## Update Distribution
 
-To create a signed update for testing:
+Updates are created and distributed by the development team:
 
-```bash
-# Build the new version
-cargo build --release
-
-# Sign the binary
-cargo run --bin sign-update -- \
-  --binary target/release/jantar \
-  --version 0.2.0 \
-  --key signing_key.hex  # Optional, uses test key if not provided
-```
+- **Signed Binaries**: All updates are cryptographically signed
+- **P2P Distribution**: Updates propagate through the network automatically
+- **Version Verification**: Only legitimate updates are accepted and installed
 
 This creates:
 - A signature for the binary

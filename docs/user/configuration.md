@@ -148,18 +148,30 @@ database_path: "/opt/jantar/zenyt.db"
 database_auto_connect: true
 ```
 
-### Metrics Settings
+### Web Server Settings
 
 ```yaml
-# Enable Prometheus metrics
-metrics_enabled: true
-
-# Metrics HTTP endpoint
-metrics_port: 9090
-
-# Metrics collection interval (seconds)
-metrics_interval: 60
+# Web server with granular feature control
+web:
+  enabled: true           # Enable web server
+  port: 9090             # HTTP port for all web features
+  bind_address: "127.0.0.1"  # Bind address (localhost for security)
+  prometheus: true       # Enable /metrics endpoint
+  dashboard: true        # Enable / interactive dashboard
+  api: true             # Enable /api/* JSON endpoints
+  cli: false            # Enable /cli/ web interface (disabled by default)
 ```
+
+When web server is enabled, the following become available based on feature toggles:
+- **Web Dashboard**: `http://localhost:9090/` - Interactive monitoring interface (if dashboard: true)
+- **Prometheus Metrics**: `http://localhost:9090/metrics` - Prometheus format metrics (if prometheus: true)
+- **System API**: `http://localhost:9090/api/system` - System resource data (if api: true)
+- **Network API**: `http://localhost:9090/api/network` - P2P network statistics (if api: true)
+- **Blockchain API**: `http://localhost:9090/api/blockchain` - ZENYT transaction data (if api: true)
+- **Web CLI**: `http://localhost:9090/cli/` - Web-based command interface (if cli: true)
+
+
+See [prometheus-metrics.md](prometheus-metrics.md) for detailed metrics documentation.
 
 ### Advanced Settings
 
@@ -213,17 +225,42 @@ gpu:
     signature_verification: true # GPU for signatures
 ```
 
-### Production Node
+### Production Node (Secure)
 ```yaml
 name: "ProductionNode"
-port: 4001
+network:
+  port: 4001
+  bootstrap_nodes:
+    - "/ip4/1.2.3.4/tcp/4001/p2p/12D3KooW..."
+storage:
+  max_size: 107374182400  # 100GB
+update:
+  auto: true
+  accept: "^jantar-\\d+\\.\\d+\\.\\d+-x86_64\\.AppImage$"
+web:
+  enabled: true
+  prometheus: true    # Metrics for monitoring
+  dashboard: true     # Dashboard for ops team
+  api: true          # API for external tools
+  cli: false         # DISABLED for security
 log_level: "warn"
-bootstrap_nodes:
-  - "/ip4/1.2.3.4/tcp/4001/p2p/12D3KooW..."
-max_storage_size: 107374182400  # 100GB
-auto_update: true
-update_accept: "^jantar-\\d+\\.\\d+\\.\\d+-x86_64\\.AppImage$"
-metrics_enabled: true
+```
+
+### Development Node (All Features)
+```yaml
+name: "DevNode"
+network:
+  port: 0
+  enable_mdns: true
+web:
+  enabled: true
+  prometheus: true
+  dashboard: true
+  api: true
+  cli: true          # ENABLED for development
+update:
+  auto: false        # Manual updates in development
+log_level: "debug"
 ```
 
 ### Master Node

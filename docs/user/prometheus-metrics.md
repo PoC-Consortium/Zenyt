@@ -1,18 +1,99 @@
-# Prometheus Metrics
+# Metrics Dashboard & Monitoring
 
-Jantar includes built-in Prometheus metrics for monitoring network health, peer connections, and file distribution.
+Jantar includes comprehensive metrics monitoring with both a modern web dashboard and Prometheus-compatible API endpoints.
 
-## Enabling Metrics
+## Enabling Web Server & Metrics
+
+### Modern Configuration (Recommended)
 
 Add the following to your configuration file:
 
 ```yaml
-metrics:
-  enabled: true
-  port: 9090  # Default port, can be changed
+web:
+  enabled: true           # Enable web server
+  port: 9090             # Default port, can be changed
+  bind_address: "127.0.0.1"  # Localhost only for security
+  prometheus: true       # Enable /metrics endpoint
+  dashboard: true        # Enable interactive dashboard
+  api: true             # Enable JSON API endpoints
+  cli: false            # Web CLI (optional, disabled by default)
 ```
 
-When enabled, metrics are available at: `http://localhost:9090/metrics`
+
+When web server is enabled, the following endpoints become available:
+- **Interactive Dashboard**: `http://localhost:9090/` (if dashboard: true)
+- **Prometheus Metrics**: `http://localhost:9090/metrics` (if prometheus: true)
+- **System Metrics API**: `http://localhost:9090/api/system` (if api: true)
+- **Network Metrics API**: `http://localhost:9090/api/network` (if api: true)
+- **Blockchain Metrics API**: `http://localhost:9090/api/blockchain` (if api: true)
+- **Web CLI Interface**: `http://localhost:9090/cli/` (if cli: true)
+
+## Web Dashboard
+
+The interactive dashboard provides real-time monitoring with:
+- **Dark Theme**: Optimized for monitoring environments
+- **Live Charts**: Network activity and resource usage graphs
+- **Auto-Refresh**: Updates every 5 seconds
+- **Mobile Responsive**: Works on different screen sizes
+
+### Dashboard Features
+- **Network Status**: Connected peers, gossipsub messages, connection success rates
+- **System Resources**: CPU usage, memory usage, disk space, uptime
+- **Blockchain Status**: ZENYT balance, mempool size, transaction processing
+- **File Distribution**: Available files, distribution stats, iroh storage size
+
+## API Endpoints
+
+The metrics system provides JSON API endpoints for programmatic access:
+
+### `/api/system` - System Resource Metrics
+Returns current system resource usage:
+```json
+{
+  "memory_percent": "65.2",
+  "cpu_percent": "12.8", 
+  "disk_usage": "2.3 GB",
+  "uptime": "2h 30m",
+  "iroh_storage": "1.2 GB",
+  "threads": 18,
+  "file_descriptors": 156
+}
+```
+
+### `/api/network` - Network & P2P Metrics  
+Returns P2P network status and statistics:
+```json
+{
+  "connected_peers": 3,
+  "gossip_messages": 42,
+  "connection_rate": "85.7",
+  "available_files": 8,
+  "files_distributed": 12,
+  "download_rate": "2.4 MB/s"
+}
+```
+
+### `/api/blockchain` - ZENYT Blockchain Metrics
+Returns blockchain and transaction data:
+```json
+{
+  "balance": "1000.50",
+  "mempool_size": 3,
+  "transactions_processed": 156,
+  "validation_queue": 0,
+  "blockchain_height": 245
+}
+```
+
+### `/api/metrics` - General Metrics Status
+Returns overall metrics system information:
+```json
+{
+  "status": "active",
+  "total_metrics": 45,
+  "last_updated": "2025-01-20T10:30:00Z"
+}
+```
 
 ## Available Metrics
 

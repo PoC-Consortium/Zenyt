@@ -43,19 +43,19 @@ Use the `-rpc` flag with `-e` to send commands to a running daemon:
 jantar -rpc -e "status"
 
 # List connected peers
-jantar -rpc -e "peers"
+jantar -rpc -e "net peers"
 
 # Show version
-jantar -rpc -e "version"
+jantar -rpc -e "sys version"
 
 # List available files
-jantar -rpc -e "list"
+jantar -rpc -e "fs ls"
 
 # Send a message (master nodes)
-jantar -rpc -e "msg 12D3KooW... Hello from RPC"
+jantar -rpc -e "net msg 12D3KooW... Hello from RPC"
 
 # Add file (master nodes only)
-jantar -rpc -e "add-file /path/to/file.txt"
+jantar -rpc -e "fs add /path/to/file.txt"
 
 # Graceful shutdown
 jantar -rpc -e "quit"
@@ -149,7 +149,7 @@ if ! jantar -rpc -e "status" > /dev/null 2>&1; then
     systemctl restart jantar
 fi
 
-PEERS=$(jantar -rpc -e "peers" | grep -c "Connected")
+PEERS=$(jantar -rpc -e "net peers" | grep -c "Connected")
 echo "Connected peers: $PEERS"
 ```
 
@@ -159,7 +159,7 @@ echo "Connected peers: $PEERS"
 # distribute.sh - Add files from directory
 
 for file in /var/jantar/uploads/*; do
-    jantar -rpc --rpc-auth "$RPC_TOKEN" -e "add-file $file"
+    jantar -rpc --rpc-auth "$RPC_TOKEN" -e "fs add $file"
     sleep 5
 done
 ```
@@ -169,7 +169,7 @@ done
 # Check multiple nodes
 for node in node1 node2 node3; do
     echo "Checking $node..."
-    ssh $node "jantar -rpc -e 'peers' | head -5"
+    ssh $node "jantar -rpc -e 'net peers' | head -5"
 done
 ```
 
@@ -186,8 +186,8 @@ done
 - Token is case-sensitive
 
 ### "Command not found"
-- Some commands are master-only (add-file, crawl)
-- Check command spelling
+- Some commands are master-only (fs add, net crawl)
+- Check command spelling and hierarchical format
 - Use `help` to see available commands
 
 ### Socket Permission Denied
@@ -200,22 +200,28 @@ chmod 600 /tmp/jantar.sock
 ## RPC Commands Reference
 
 ### Standard Commands
-All regular Jantar commands work via RPC:
-- `help` - Show commands
-- `peers` - List peers
-- `list` - List files
-- `version` - Show version
-- `update` - Check updates
+All regular Jantar hierarchical commands work via RPC:
+- `help [command]` - Show commands
+- `net peers` - List peers
+- `fs ls` - List files
+- `sys version` - Show version
+- `sys update` - Check updates
+- `crypto gen [type]` - Generate crypto address
+- `db status` - Database information
 
 ### RPC-Specific Commands
 - `status` - Get daemon status and stats
-- `quit` / `exit` - Graceful daemon shutdown (standard Jantar commands)
+- `list-commands` - Get all commands with descriptions
+- `quit` / `exit` - Graceful daemon shutdown
 
 ### Master-Only Commands
 Require master node with valid key:
-- `add-file` - Add file to P2P network
-- `push-update` - Push update package
-- `crawl` - Network topology analysis
+- `fs add <file>` - Add file to P2P network
+- `sys push-update` - Push update package
+- `net crawl` - Network topology analysis
+
+**📖 For complete command reference with examples and JSON formats:**
+**See [RPC Commands Reference](rpc-commands-reference.md)**
 
 ## Integration Examples
 

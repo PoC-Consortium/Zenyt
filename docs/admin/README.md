@@ -9,11 +9,8 @@ This guide is for system administrators, network operators, and those running Ja
 3. [System Services](systemd.md) - Running as a system service
 4. [RPC Interface](rpc-interface.md) - Remote control for daemons
 5. [Monitoring](monitoring.md) - Metrics, logs, and observability
-6. [Security](security.md) - Hardening and best practices
-7. [TURN Relay Setup](turn-relay.md) - Setting up TURN for NAT traversal
-8. [TURN Security](turn-security.md) - Critical security warnings for TURN
-9. [TURN Double Standard](turn-relay-hypocrisy.md) - The ISP hypocrisy explained
-10. [Master Nodes](master-nodes.md) - Operating update distribution nodes
+6. [TURN Security](turn-security.md) - Critical security warnings for TURN
+7. [TURN Double Standard](turn-relay-hypocrisy.md) - The ISP hypocrisy explained
 
 ## 🎯 Administration Overview
 
@@ -157,13 +154,13 @@ curl http://localhost:9090/metrics
 - Set up [Bootstrap Nodes](bootstrap-nodes.md)
 - Configure [System Services](systemd.md)
 - Enable [Monitoring](monitoring.md)
-- Review [Security Best Practices](security.md)
+- Review [TURN Security](turn-security.md)
 
 ## 🆘 Administrator Support
 
 - Technical documentation: [Developer Guide](../development/README.md)
 - Network planning: [Deployment Guide](deployment.md)
-- Troubleshooting: [Admin Troubleshooting](troubleshooting.md)
+- Network issues: Review logs and connection statistics
 
 ---
 [← Back to Documentation Index](../Index.md)

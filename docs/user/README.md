@@ -10,7 +10,6 @@ This guide is for end users who want to use Jantar for peer-to-peer communicatio
 4. [Configuration](configuration.md) - Customizing your setup
 5. [Features](features.md) - Complete feature overview
 6. [Prometheus Metrics](prometheus-metrics.md) - Monitoring with Prometheus
-7. [Troubleshooting](troubleshooting.md) - Solving common issues
 
 ## 🎯 What is Jantar?
 
@@ -83,10 +82,8 @@ Jantar uses several security measures:
 ## 🆘 Getting Help
 
 If you encounter issues:
-1. Check the [Troubleshooting Guide](troubleshooting.md)
-2. Review the [FAQ](faq.md)
-3. Search existing [GitHub Issues](https://github.com/yourrepo/issues)
-4. Ask in [Discussions](https://github.com/yourrepo/discussions)
+1. Search existing [GitHub Issues](https://github.com/PoC-Consortium/Zenyt/issues)
+2. Join the Discord: https://discord.gg/Mvqaa5k
 
 ---
 [← Back to Documentation Index](../Index.md)
